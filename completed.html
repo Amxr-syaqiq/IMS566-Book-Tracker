@@ -14,6 +14,11 @@
             font-family: Arial;
         }
 
+         img
+        {
+             border-radius: 5px;
+        }
+
         h1
         {
             background-color: purple;
@@ -93,6 +98,7 @@
     }
 }
 
+    
     </style>
 </head>
 <body>
@@ -107,30 +113,107 @@
         <li style="float:right"><a href="index.html">LOGOUT</a></li>
     </ul>
 
-    <div class="container mt-4">
+    <div style="text-align:center; margin-top:20px;">
+    <input type="text" id="searchInput" onkeyup="searchBook()" 
+    placeholder="🔍 Search book..." 
+    style="padding:8px; width:220px; border-radius:5px; border:1px solid grey;">
+    </div>
+
     <table class="table table-bordered text-center">
         <tr>
+            <th>IMAGE</th>
             <th>TITLE</th>
             <th>AUTHOR</th>
+            <th>STATUS</th>
             <th>RATING</th>
         </tr>
 
         <tr>
-            <td>Atomic Habits</td>
-            <td>James Clear</td>
-            <td>5</td>
-        </tr>
+    <td><a href="https://glyndewis.com/blog/atomichabits" target="_blank"><img src="images/book1.jpg" width="80"></a></td>
+    <td>Atomic Habits</td>
+    <td>James Clear</td>
+    <td><span style="background-color:green; color:white; padding:5px 10px; border-radius:5px;">Completed</span></td>
+    <td>⭐⭐⭐⭐⭐</td>
+</tr>
 
-        <tr>
-            <td>Ikigai</td>
-            <td>Hector Garcia</td>
-            <td>5</td>
-        </tr>
+<tr>
+    <td><a href="https://www.penguinrandomhouse.com/books/549469/ikigai-by-hector-garcia-and-francesc-miralles/" target="_blank"><img src="images/book2.jpg" width="80"></a></td>
+    <td>Ikigai</td>
+    <td>Hector Garcia</td>
+    <td><span style="background-color:green; color:white; padding:5px 10px; border-radius:5px;">Completed</span></td>
+    <td>⭐⭐⭐⭐⭐</td>
+</tr>
+
+<tr>
+    <td><a href="https://www.kobo.com/my/en/audiobook/rich-dad-poor-dad-10?srsltid=AfmBOoqTIEjsNcQdXNvgS-oa48Nb75fujGkuI_Rh8pEJxXi0CcXBy0aL" target="_blank"><img src="images/book5.jpg" width="80"></a></td>
+    <td>Rich Dad Poor Dad</td>
+    <td>Robert Kiyosaki</td>
+    <td><span style="background-color:green; color:white; padding:5px 10px; border-radius:5px;">Completed</span></td>
+    <td>⭐⭐⭐⭐</td>
+</tr>
+
+<tr>
+    <td><a href="https://www.sloww.co/alchemist-book/" target="_blank"><img src="images/book6.jpg" width="80"></a></td>
+    <td>The Alchemist</td>
+    <td>Paulo Coelho</td>
+    <td><span style="background-color:green; color:white; padding:5px 10px; border-radius:5px;">Completed</span></td>
+    <td>⭐⭐⭐⭐⭐</td>
+</tr>
+
+<tr>
+    <td><a href="https://www.penguin.co.nz/books/the-think-and-grow-rich-workbook-9781585427116" target="_blank"><img src="images/book7.jpg" width="80"></a></td>
+    <td>Think and Grow Rich</td>
+    <td>Napoleon Hill</td>
+    <td><span style="background-color:green; color:white; padding:5px 10px; border-radius:5px;">Completed</span></td>
+    <td>⭐⭐⭐⭐</td>
+</tr>
+
+<tr>
+     <td><a href="https://www.obsonline.co.nz/product/start-with-why/9780241958223.aspx" target="_blank"><img src="images/book8.jpg" width="80"></a></td>
+    <td>Start With Why</td>
+    <td>Simon Sinek</td>
+    <td><span style="background-color:green; color:white; padding:5px 10px; border-radius:5px;">Completed</span></td>
+    <td>⭐</td>
+</tr>
 
     </table>
-    </div>
 
     </div>
+
+    <div class="text-center mt-3">
+    <button class="btn btn-primary" onclick="changeColor()">Change Theme</button>
+    </div>
+
+    <script>
+    function changeColor() {
+    document.body.style.backgroundColor = "darkblue";
+    }
+    </script>
+
+    <script>
+function addBook() {
+    alert("Book successfully added!");
+}
+
+function searchBook() {
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let table = document.querySelector(".table");
+    let tr = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < tr.length; i++) {
+        let td = tr[i].getElementsByTagName("td")[1]; // column TITLE
+        if (td) {
+            let txtValue = td.textContent || td.innerText;
+            if (txtValue.toLowerCase().indexOf(input) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+</script>
+
 
 <footer style="background-color: black; color: white; text-align: center; padding: 15px; margin-top: 40px;">
     <p>© 2026 Book Tracker System</p>
