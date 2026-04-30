@@ -1,266 +1,219 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Books</title>
+
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>MY BOOKS</title>
-    
 
-    <style> 
-
-        body
-        {
+    <style>
+        body {
             background-image: url("images/book_bg.jpg");
             background-size: cover;
             font-family: Arial;
         }
 
-        img
-        {
-             border-radius: 5px;
-        }
-
-        button 
-        {
-             padding: 10px 20px;
-             border-radius: 5px;
-        }
-
-
-        h1
-        {
+        h1 {
             background-color: darkgreen;
             color: white;
             text-align: center;
             padding: 20px;
         }
 
-        ul
-        {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: green;
+        img {
+            border-radius: 5px;
         }
 
-        li
-        {
-            float: left;
-        }
-
-        li a
-        {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 15px 20px;
-            text-decoration: none;
-        }
-
-        li a:hover
-        {
-            background-color: limegreen;
-        }
-
-        table
-        {
-            width: 80%;
-            margin: 30px auto;
-            border-collapse: collapse;
+        table {
             background-color: white;
         }
 
-        table, th, td
-        {
-            border: 2px solid green;
+        .status-completed {
+            background-color: green;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
         }
 
-        th
-        {
-            background-color: lightgreen;
+        .status-reading {
+            background-color: orange;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
         }
 
-        th, td
-        {
-            padding: 15px;
+        footer {
+            background-color: black;
+            color: white;
             text-align: center;
+            padding: 15px;
+            margin-top: 40px;
         }
-        
-        
-        
-       @media (max-width: 768px) {
-    table {
-        width: 100%;
-        font-size: 12px;
-    }
-
-    th, td {
-        padding: 5px;
-    }
-
-    h1 {
-        font-size: 20px;
-    }
-
-    nav {
-        font-size: 12px;
-    }
-}
-
-
-
     </style>
 </head>
+
 <body>
 
-     <div class="container mt-4">
-
+<header>
     <h1>MY BOOKS</h1>
 
-    <ul>
-        <li><a href="dashboard.html">DASHBOARD</a></li>
-        <li><a href="books.html">MY BOOKS</a></li>
-        <li><a href="completed.html">COMPLETED BOOKS</a></li>
-        <li style="float:right"><a href="index.html">LOGOUT</a></li>
-    </ul>
+    <!-- Modern Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="#">Book Tracker</a>
 
-    <div style="text-align:center; margin-top:20px;">
-    <input type="text" id="searchInput" onkeyup="searchBook()" 
-    placeholder="🔍 Search book..." 
-    style="padding:8px; width:220px; border-radius:5px; border:1px solid grey;">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="books.html">My Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="completed.html">Completed</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="container mt-4">
+
+    <!-- Search -->
+    <div class="text-center mb-3">
+        <input type="text" id="searchInput" onkeyup="searchBook()" 
+        placeholder="🔍 Search book..." 
+        class="form-control w-50 mx-auto">
     </div>
 
+    <!-- Table -->
     <table class="table table-bordered text-center">
-        <tr>
-            <th>IMAGE</th>
-            <th>TITLE</th>
-            <th>AUTHOR</th>
-            <th>STATUS</th>
-            <th>RATING</th>
-        </tr>
+        <thead class="table-success">
+            <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Status</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
 
-        <tr>
-             
-            <td><a href="https://glyndewis.com/blog/atomichabits" target="_blank"><img src="images/book1.jpg" width="80"></a></td>
-            <td>Atomic Habits</td>
-            <td>James Clear</td>
-            <td><span style="background-color:green; color:white; padding:5px 10px; border-radius:5px;">Completed</span></td>
-            <td>⭐⭐⭐⭐⭐</td>
-        </tr>
+        <tbody>
 
-        <tr>
-            <td> <a href="https://www.brianheger.com/deep-work-cal-newport-amazon/" target="_blank"><img src="images/book3.jpg" width="80"></a></td>
-            <td>Deep Work</td>
-            <td>Cal Newport</td>
-            <td><span style="background-color:orange; color:white; padding:5px 10px; border-radius:5px;">Reading</span></td>
-            <td>⭐⭐⭐⭐</td>
-        </tr>
+            <tr>
+                <td><img src="images/book1.jpg" width="80"></td>
+                <td>Atomic Habits</td>
+                <td>James Clear</td>
+                <td><span class="status-completed">Completed</span></td>
+                <td>⭐⭐⭐⭐⭐</td>
+            </tr>
 
-        <tr>
-            <td><a href="https://www.penguinrandomhouse.com/books/549469/ikigai-by-hector-garcia-and-francesc-miralles/" target="_blank"><img src="images/book2.jpg" width="80"></a></td>
-            <td>Ikigai</td>
-            <td>Hector Garcia</td>
-            <td><span style="background-color:green; color:white; padding:5px 10px; border-radius:5px;">Completed</span></td>
-            <td>⭐⭐⭐⭐⭐</td>
-        </tr>
+            <tr>
+                <td><img src="images/book3.jpg" width="80"></td>
+                <td>Deep Work</td>
+                <td>Cal Newport</td>
+                <td><span class="status-reading">Reading</span></td>
+                <td>⭐⭐⭐⭐</td>
+            </tr>
 
-        <tr>
-            <td><a href="https://www.linkedin.com/pulse/book-summary-psychology-money-morgan-housel-tanvir-ahmed-shaikh" target="_blank"><img src="images/book4.jpg" width="80"></a></td>
-            <td>The Psychology of Money</td>
-            <td>Morgan Housel</td>
-            <td><span style="background-color:orange; color:white; padding:5px 10px; border-radius:5px;">Reading</span></td>
-            <td>⭐⭐⭐</td>
-        </tr>
+            <tr>
+                <td><img src="images/book2.jpg" width="80"></td>
+                <td>Ikigai</td>
+                <td>Hector Garcia</td>
+                <td><span class="status-completed">Completed</span></td>
+                <td>⭐⭐⭐⭐⭐</td>
+            </tr>
 
-        <tr>
-            <td><a href="https://www.kobo.com/my/en/audiobook/rich-dad-poor-dad-10?srsltid=AfmBOoqTIEjsNcQdXNvgS-oa48Nb75fujGkuI_Rh8pEJxXi0CcXBy0aL" target="_blank"><img src="images/book5.jpg" width="80"></a></td>
-            <td>Rich Dad Poor Dad</td>
-            <td>Robert Kiyosaki</td>
-            <td><span style="background-color:green; color:white; padding:5px 10px; border-radius:5px;">Completed</span></td>
-            <td>⭐⭐⭐⭐</td>
-       </tr>
+            <tr>
+                <td><img src="images/book4.jpg" width="80"></td>
+                <td>The Psychology of Money</td>
+                <td>Morgan Housel</td>
+                <td><span class="status-reading">Reading</span></td>
+                <td>⭐⭐⭐</td>
+            </tr>
 
-        <tr>
-           <td><a href="https://www.sloww.co/alchemist-book/" target="_blank"><img src="images/book6.jpg" width="80"></a></td>
-           <td>The Alchemist</td>
-           <td>Paulo Coelho</td>
-           <td><span style="background-color:green; color:white; padding:5px 10px; border-radius:5px;">Completed</span></td>
-           <td>⭐⭐⭐⭐⭐</td>
-       </tr>
+            <tr>
+                <td><img src="images/book5.jpg" width="80"></td>
+                <td>Rich Dad Poor Dad</td>
+                <td>Robert Kiyosaki</td>
+                <td><span class="status-completed">Completed</span></td>
+                <td>⭐⭐⭐⭐</td>
+            </tr>
 
-       <tr>
-           <td><a href="https://www.penguin.co.nz/books/the-think-and-grow-rich-workbook-9781585427116" target="_blank"><img src="images/book7.jpg" width="80"></a></td>
-           <td>Think and Grow Rich</td>
-           <td>Napoleon Hill</td>
-           <td><span style="background-color:green; color:white; padding:5px 10px; border-radius:5px;">Completed</span></td>
-           <td>⭐⭐⭐⭐</td>
-      </tr>
+            <tr>
+                <td><img src="images/book6.jpg" width="80"></td>
+                <td>The Alchemist</td>
+                <td>Paulo Coelho</td>
+                <td><span class="status-completed">Completed</span></td>
+                <td>⭐⭐⭐⭐⭐</td>
+            </tr>
 
-       <tr>
-           <td><a href="https://www.obsonline.co.nz/product/start-with-why/9780241958223.aspx" target="_blank"><img src="images/book8.jpg" width="80"></a></td>
-           <td>Start With Why</td>
-           <td>Simon Sinek</td>
-           <td><span style="background-color:green; color:white; padding:5px 10px; border-radius:5px;">Completed</span></td>
-           <td>⭐</td>
-       </tr>
+            <tr>
+                <td><img src="images/book7.jpg" width="80"></td>
+                <td>Think and Grow Rich</td>
+                <td>Napoleon Hill</td>
+                <td><span class="status-completed">Completed</span></td>
+                <td>⭐⭐⭐⭐</td>
+            </tr>
 
-       <tr>
-           <td><a href="https://www.franklincovey.com/books/the-7-habits-of-highly-effective-people/" target="_blank"><img src="images/book9.jpg" width="80"></a></td>
-           <td>The 7 Habits</td>
-           <td>Stephen Covey</td>
-           <td><span style="background-color:orange; color:white; padding:5px 10px; border-radius:5px;">Reading</span></td>
-           <td>⭐⭐⭐⭐</td>
-       </tr>
+            <tr>
+                <td><img src="images/book8.jpg" width="80"></td>
+                <td>Start With Why</td>
+                <td>Simon Sinek</td>
+                <td><span class="status-completed">Completed</span></td>
+                <td>⭐</td>
+            </tr>
 
-       <tr>
-          <td><a href="https://books.apple.com/us/book/make-your-bed/id1144035945" target="_blank"><img src="images/book10.jpg" width="80"></a></td>
-          <td>Make Your Bed</td>
-          <td>William McRaven</td>
-          <td><span style="background-color:orange; color:white; padding:5px 10px; border-radius:5px;">Reading</span></td>
-          <td>⭐⭐</td>
-       </tr>
+            <tr>
+                <td><img src="images/book9.jpg" width="80"></td>
+                <td>The 7 Habits</td>
+                <td>Stephen Covey</td>
+                <td><span class="status-reading">Reading</span></td>
+                <td>⭐⭐⭐⭐</td>
+            </tr>
 
+            <tr>
+                <td><img src="images/book10.jpg" width="80"></td>
+                <td>Make Your Bed</td>
+                <td>William McRaven</td>
+                <td><span class="status-reading">Reading</span></td>
+                <td>⭐⭐</td>
+            </tr>
+
+        </tbody>
     </table>
 
+    <!-- Button -->
+    <div class="text-center">
+        <button class="btn btn-primary" onclick="addBook()">Add Book</button>
     </div>
 
-    <div class="text-center mt-3">
-    <button class="btn btn-primary" onclick="addBook()">Add Book</button>
-</div>
+</main>
+
+<footer>
+    <p>© 2026 Book Tracker System</p>
+    <p>Developed by: MUHAMMAD AMIR SYAQIQ BIN MOHD FADLI</p>
+    <p>Email: amirsyaqiq11@gmail.com</p>
+</footer>
 
 <script>
 function addBook() {
     alert("Book successfully added!");
 }
 
-
 function searchBook() {
     let input = document.getElementById("searchInput").value.toLowerCase();
-    let table = document.querySelector(".table");
-    let tr = table.getElementsByTagName("tr");
+    let rows = document.querySelectorAll("tbody tr");
 
-    for (let i = 1; i < tr.length; i++) {
-        let td = tr[i].getElementsByTagName("td")[1]; // column TITLE
-        if (td) {
-            let txtValue = td.textContent || td.innerText;
-            if (txtValue.toLowerCase().indexOf(input) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
-        }
-    }
+    rows.forEach(row => {
+        let title = row.children[1].textContent.toLowerCase();
+        row.style.display = title.includes(input) ? "" : "none";
+    });
 }
 </script>
-
-
-<footer style="background-color: black; color: white; text-align: center; padding: 15px; margin-top: 40px;">
-    <p>© 2026 Book Tracker System</p>
-    <p>Developed by: MUHAMMAD AMIR SYAQIQ BIN MOHD FADLI</p>
-    <p>Email: amirsyaqiq11@gmail.com</p>
-</footer>
 
 </body>
 </html>

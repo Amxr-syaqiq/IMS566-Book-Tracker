@@ -1,236 +1,160 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Tracker Dashboard</title>
+
+    <!-- Bootstrap + Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <title>BOOK TRACKER DASHBOARD</title>
 
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
-
-        body
-        {
+        body {
             background-color: lightyellow;
             font-family: Arial;
         }
 
-        
-
-        h1
-        {
+        h1 {
             background-color: darkblue;
             color: white;
             text-align: center;
             padding: 20px;
         }
 
-        ul
-        {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: navy;
+        .card-box {
+            padding: 20px;
+            border-radius: 10px;
+            transition: 0.3s;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        li
-        {
-            float: left;
-        }
-
-        li a
-        {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 15px 20px;
-            text-decoration: none;
-        }
-
-        li a:hover
-        {
-            background-color: royalblue;
-        }
-
-        table
-        {
-            width: 70%;
-            margin-top: 30px;
-            margin-left: auto;
-            margin-right: auto;
-            border-collapse: collapse;
-            background-color: white;
-        }
-
-        table, th, td
-        {
-            border: 2px solid darkblue;
-        }
-
-        th
-        {
-            background-color: lightblue;
-        }
-
-        th, td
-        {
-            padding: 15px;
-            text-align: center;
-        }
-
-        canvas
-        {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 40px;
-            width: 400px !important;
-            height: 400px !important;
-        }
-
-       .card-box 
-        {
-         padding: 20px;
-         border-radius: 10px;
-         transition: 0.3s;
-         box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-         height: 180px;              
-         display: flex;            
-         flex-direction: column;     
-        justify-content: center;  
-        }
-        .card-box:hover
-        {
+        .card-box:hover {
             transform: scale(1.05);
             box-shadow: 4px 4px 20px rgba(0,0,0,0.2);
         }
 
-        .icon   
-         {
-             font-size: 30px;
-             margin-bottom: 10px;
-         }
-        
-         button:hover 
-         {
-             background-color: royalblue;
-             transform: scale(1.05);
+        .icon {
+            font-size: 30px;
+            margin-bottom: 10px;
         }
-    
 
-        @media (max-width: 768px) {
-    table {
-        width: 100%;
-        font-size: 12px;
-    }
-
-    th, td {
-        padding: 5px;
-    }
-
-    h1 {
-        font-size: 20px;
-    }
-
-    nav {
-        font-size: 12px;
-    }
-    
-}
-
-
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
     </style>
 </head>
-<body>
-     <div class="container mt-4">
 
+<body>
+
+<header>
     <h1>BOOK TRACKER DASHBOARD</h1>
 
-    <ul>
-        <li><a href="dashboard.html">DASHBOARD</a></li>
-        <li><a href="books.html">MY BOOKS</a></li>
-        <li><a href="completed.html">COMPLETED BOOKS</a></li>
-        <li style="float:right"><a href="index.html">LOGOUT</a></li>
-    </ul>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Book Tracker</a>
 
-    <h3 style="text-align:center; margin-top:20px;">
-    Welcome back! Here is your reading progress 📚
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="books.html">My Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="completed.html">Completed</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="container mt-4">
+
+    <h3 class="text-center mt-3">
+        Welcome back! Here is your reading progress 📚
     </h3>
 
-    <p id="date" style="text-align:center;"></p>
+    <p id="date" class="text-center"></p>
 
-    <div class="text-center mt-3">
-    <button class="btn btn-primary" onclick="changeColor()">Change Theme</button>
+    <div class="text-center mb-3">
+        <button class="btn btn-primary" onclick="changeTheme()">Change Theme</button>
     </div>
 
-
-    <p style="text-align:center;">
-    This system helps you track your reading progress efficiently.
-</p>
-
-
-    <!-- SUMMARY CARDS -->
-<div class="row text-center mt-4 justify-content-center">
-
-    <div class="col-md-3 m-2">
-        <a href="books.html" style="text-decoration:none; color:black;">
-            <div class="card-box" style="background-color: white; border:2px solid darkblue;">
-                <i class="bi bi-book icon"></i>
-                <h4>Total Books</h4>
-                <h2>10</h2>
-            </div>
-        </a>
-    </div>
-
-    <div class="col-md-3 m-2">
-        <div class="card-box" style="background-color: lightyellow; border:2px solid orange;">
-            <span style="background-color:orange; color:white; padding:3px 8px; border-radius:5px;">Active</span>
-            <h4>Reading</h4>
-            <h2>4</h2>
-        </div>
-    </div>
-
-    <div class="col-md-3 m-2">
-        <div class="card-box" style="background-color: lightgreen; border:2px solid green;">
-           <span style="background-color:green; color:white; padding:3px 8px; border-radius:5px;">Done</span> 
-            <h4>Completed</h4>
-            <h2>6</h2>
-        </div>
-    </div>
-
-</div>
-
-
-<div style="text-align:center; margin-top:30px;">
-    <button onclick="document.location='books.html'" style="padding:10px 20px; background-color:darkblue; color:white; border:none;">
-        Add New Book
-    </button>
-</div>
-
-    <div class="container mt-5">
-    <h3>Overall Progress</h3>
-
-    <div style="background-color:lightgrey; width:100%; height:30px;">
-        <div style="background-color:green; width:60%; height:30px; text-align:center; color:white;">
-            60% Completed
-        </div>
-    </div>
-</div>
-
-<div class="container mt-5">
-    <h3>Motivation</h3>
-    <p style="background-color:white; padding:20px; border-left:5px solid darkblue;">
-        <q>Reading is to the mind what exercise is to the body.</q>
+    <p class="text-center">
+        This system helps you track your reading progress efficiently.
     </p>
-</div>
 
-    <!-- CHART SECTION -->
+    <!-- CARDS -->
+    <div class="row text-center mt-4 justify-content-center">
+
+        <div class="col-md-3 m-2">
+            <a href="books.html" class="text-decoration-none text-dark">
+                <div class="card-box border border-primary bg-white">
+                    <i class="bi bi-book icon"></i>
+                    <h4>Total Books</h4>
+                    <h2>10</h2>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3 m-2">
+            <div class="card-box border border-warning bg-light">
+                <span class="badge bg-warning mb-2">Active</span>
+                <h4>Reading</h4>
+                <h2>4</h2>
+            </div>
+        </div>
+
+        <div class="col-md-3 m-2">
+            <div class="card-box border border-success bg-light">
+                <span class="badge bg-success mb-2">Done</span>
+                <h4>Completed</h4>
+                <h2>6</h2>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BUTTON -->
+    <div class="text-center mt-4">
+        <button onclick="location.href='books.html'" class="btn btn-primary">
+            Add New Book
+        </button>
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="mt-5">
+        <h3>Overall Progress</h3>
+        <div class="progress">
+            <div class="progress-bar bg-success" style="width:60%">60%</div>
+        </div>
+    </div>
+
+    <!-- MOTIVATION -->
+    <div class="mt-5">
+        <h3>Motivation</h3>
+        <blockquote class="blockquote bg-white p-3 border-start border-4 border-primary">
+            Reading is to the mind what exercise is to the body.
+        </blockquote>
+    </div>
+
+    <!-- CHART -->
     <div class="row mt-5">
-        
-        
+
         <div class="col-md-6 text-center">
             <h3>Reading Progress</h3>
             <canvas id="pieChart"></canvas>
@@ -243,68 +167,58 @@
 
     </div>
 
-</div>
+    <!-- ACTIVITY -->
+    <div class="mt-5">
+        <h3>Recent Activity</h3>
+        <ul class="list-group">
+            <li class="list-group-item">Finished reading "Atomic Habits"</li>
+            <li class="list-group-item">Started reading "Deep Work"</li>
+            <li class="list-group-item">Added new book "Psychology of Money"</li>
+        </ul>
+    </div>
 
-<div class="container mt-5">
-    <h3>Recent Activity</h3>
+</main>
 
-    <ul style="background-color:white; padding:20px; border:1px solid grey;">
-        <li>Finished reading "Atomic Habits"</li>
-        <li>Started reading "Deep Work"</li>
-        <li>Added new book "Psychology of Money"</li>
-    </ul>
-</div>
-
-<script>
-    // PIE CHART
-    var pieLabels = ["Reading", "Completed"];
-    var pieData = [4, 6];
-
-    new Chart("pieChart", {
-        type: "pie",
-        data: {
-            labels: pieLabels,
-            datasets: [{
-                backgroundColor: ["orange", "green"],
-                data: pieData
-            }]
-        }
-    });
-
-    // BAR CHART 
-    var barLabels = ["Jan", "Feb", "Mar", "Apr"];
-    var barData = [1, 2, 3, 4];
-
-    new Chart("barChart", {
-        type: "bar",
-        data: {
-            labels: barLabels,
-            datasets: [{
-                label: "Books Read",
-                backgroundColor: "blue",
-                data: barData
-            }]
-        }
-    });
-
-    alert("Welcome to your Book Tracker Dashboard!");
-    </script>
-
-    <script>
-    document.getElementById("date").innerHTML = "Today: " + new Date().toDateString();
-</script>
-
-<script>
-    function changeColor() {
-    document.body.style.backgroundColor = "lightblue";
-    }
-    </script>
-
-<footer style="background-color: black; color: white; text-align: center; padding: 15px; margin-top: 40px;">
+<footer>
     <p>© 2026 Book Tracker System</p>
     <p>Developed by: MUHAMMAD AMIR SYAQIQ BIN MOHD FADLI</p>
     <p>Email: amirsyaqiq11@gmail.com</p>
 </footer>
+
+<script>
+document.getElementById("date").innerHTML = "Today: " + new Date().toDateString();
+
+function changeTheme() {
+    document.body.style.backgroundColor = "lightblue";
+}
+
+// PIE
+new Chart("pieChart", {
+    type: "pie",
+    data: {
+        labels: ["Reading", "Completed"],
+        datasets: [{
+            backgroundColor: ["orange", "green"],
+            data: [4, 6]
+        }]
+    }
+});
+
+// BAR
+new Chart("barChart", {
+    type: "bar",
+    data: {
+        labels: ["Jan", "Feb", "Mar", "Apr"],
+        datasets: [{
+            label: "Books Read",
+            backgroundColor: "blue",
+            data: [1, 2, 3, 4]
+        }]
+    }
+});
+
+alert("Welcome to your Book Tracker Dashboard!");
+</script>
 
 </body>
 </html>
