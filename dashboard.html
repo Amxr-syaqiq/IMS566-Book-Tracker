@@ -53,6 +53,12 @@
             padding: 15px;
             margin-top: 40px;
         }
+
+        canvas  
+        {
+            width: 100% !important;
+            height: 250px !important;
+        }
     </style>
 </head>
 
@@ -144,6 +150,10 @@
         </div>
     </div>
 
+     <p class="text-center mt-2">
+        You have completed <b>6 out of 10</b> books.
+    </p>
+
     <!-- MOTIVATION -->
     <div class="mt-5">
         <h3>Motivation</h3>
@@ -155,16 +165,39 @@
     <!-- CHART -->
     <div class="row mt-5">
 
-        <div class="col-md-6 text-center">
-            <h3>Reading Progress</h3>
+        <!-- ROW 1: PIE + BAR -->
+<div class="row justify-content-center text-center mt-4">
+
+
+    <!-- PIE -->
+    <div class="col-md-5 mb-4">
+        <div style="background-color:white; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.15); width:100%;">
+            <h5>Reading Progress</h5>
             <canvas id="pieChart"></canvas>
         </div>
+    </div>
 
-        <div class="col-md-6 text-center">
-            <h3>Monthly Reading</h3>
+    <!-- BAR -->
+    <div class="col-md-5 mb-4">
+        <div style="background-color:white; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.15); width:100%;">
+            <h5>Monthly Reading</h5>
             <canvas id="barChart"></canvas>
         </div>
+    </div>
 
+</div>
+
+<!-- ROW 2: LINE (CENTER) -->
+<div class="row justify-content-center text-center">
+
+    <div class="col-md-6">
+        <div style="background-color:white; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.15); width:100%;">
+            <h5>Reading Trend</h5>
+            <canvas id="lineChart"></canvas>
+        </div>
+    </div>
+
+</div>
     </div>
 
     <!-- ACTIVITY -->
@@ -172,8 +205,8 @@
         <h3>Recent Activity</h3>
         <ul class="list-group">
             <li class="list-group-item">Finished reading "Atomic Habits"</li>
-            <li class="list-group-item">Started reading "Deep Work"</li>
-            <li class="list-group-item">Added new book "Psychology of Money"</li>
+            <li class="list-group-item">In Progress "Deep Work"</li>
+            <li class="list-group-item">In Progress "Psychology of Money"</li>
         </ul>
     </div>
 
@@ -192,7 +225,6 @@ function changeTheme() {
     document.body.style.backgroundColor = "lightblue";
 }
 
-// PIE
 new Chart("pieChart", {
     type: "pie",
     data: {
@@ -201,10 +233,14 @@ new Chart("pieChart", {
             backgroundColor: ["orange", "green"],
             data: [4, 6]
         }]
+    },
+    options: {
+        layout: {
+            padding: 10
+        }
     }
 });
 
-// BAR
 new Chart("barChart", {
     type: "bar",
     data: {
@@ -214,6 +250,33 @@ new Chart("barChart", {
             backgroundColor: "blue",
             data: [1, 2, 3, 4]
         }]
+    },
+    options: {
+        layout: {
+            padding: {
+                bottom: 10
+            }
+        }
+    }
+});
+
+new Chart("lineChart", {
+    type: "line",
+    data: {
+        labels: ["Jan", "Feb", "Mar", "Apr"],
+        datasets: [{
+            label: "Reading Progress",
+            data: [1, 2, 3, 4],
+            borderColor: "purple",
+            backgroundColor: "rgba(128,0,128,0.2)",
+            fill: true,
+            tension: 0.4
+        }]
+    },
+    options: {
+        layout: {
+            padding: 10
+        }
     }
 });
 
