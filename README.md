@@ -1,7 +1,7 @@
 # 📚 Book Tracker System
 
 ## 📌 Description
-This project is a web-based Book Tracker system developed for the IMS566 (Advanced Web Design Development and Content Management) assignment. The system allows users to manage and track books they are currently reading and have completed.
+This project is a web-based Book Tracker system developed for the IMS566 (Advanced Web Design Development and Content Management) assignment. The system allows users to manage and track books what they are currently reading and have completed.
 
 ## 🚀 Features
 - Login authentication (hardcoded credentials)
@@ -33,7 +33,7 @@ Password: **444666888**
 This website is fully responsive and works on desktop and mobile devices.
 
 ## 🌐 Live Website
-(https://amxr-syaqiq.github.io/IMS566-Book-Tracker/)
+(https://amxr-syaqiq.github.io/IMS566-Book-Tracker/
 
 ## 👨‍💻 Developer
 Muhammad Amir Syaqiq Bin Mohd Fadli
