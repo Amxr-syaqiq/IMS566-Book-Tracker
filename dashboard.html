@@ -159,12 +159,9 @@
         </blockquote>
     </div>
 
-    <!-- CHART -->
-    <div class="row mt-5">
-
-       
-    <div class="row justify-content-center text-center mt-4">
-
+    <!-- ALL CHART -->
+<div class="row mt-5">
+<div class="row justify-content-center text-center mt-4">
 
     <!-- PIE -->
     <div class="col-md-5 mb-4">
@@ -182,20 +179,41 @@
         </div>
     </div>
 
-</div>
-
-
-<div class="row justify-content-center text-center">
-
-    <div class="col-md-6">
+    <!-- LINE -->
+    <div class="col-md-5 mb-4">
         <div style="background-color:white; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.15); width:100%;">
             <h5>Reading Trend</h5>
             <canvas id="lineChart"></canvas>
         </div>
     </div>
 
-</div>
+    <!-- RATING -->
+    <div class="col-md-5 mb-4">
+        <div style="background-color:white; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.15); width:100%;">
+            <h5>Rating Distribution</h5>
+            <canvas id="ratingChart"></canvas>
+        </div>
     </div>
+
+    <!-- TOP RATED BOOKS -->
+    <div class="col-md-5 mb-4">
+        <div style="background-color:white; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.15); width:100%;">
+            <h5>Top Rated Books</h5>
+            <canvas id="topRatedChart"></canvas>
+        </div>
+    </div>
+
+    <!-- READING TIME -->
+    <div class="col-md-5 mb-4">
+        <div style="background-color:white; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.15); width:100%;">
+            <h5>Reading Time Estimate</h5>
+            <canvas id="timeChart"></canvas>
+        </div>
+    </div>
+
+</div>
+</div>
+    
 
     <!-- ACTIVITY -->
     <div class="mt-5">
@@ -274,6 +292,76 @@ new Chart("lineChart", {
         layout: {
             padding: 10
         }
+    }
+});
+
+new Chart("ratingChart", {
+    type: "pie",
+    data: {
+        labels: ["⭐⭐⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐", "⭐⭐", "⭐"],
+        datasets: [{
+            backgroundColor: [
+                "gold",
+                "green",
+                "orange",
+                "blue",
+                "red"
+            ],
+            data: [3, 4, 1, 1, 1]
+        }]
+    },
+    options: {
+        layout: {
+            padding: 10
+        }
+    }
+});
+
+new Chart("topRatedChart", {
+    type: "bar",
+    data: {
+        labels: [
+            "Atomic Habits",
+            "Ikigai",
+            "The Alchemist",
+            "Deep Work",
+            "Rich Dad Poor Dad"
+        ],
+        datasets: [{
+            label: "Rating",
+            backgroundColor: "darkgreen",
+            data: [5, 5, 5, 4, 4]
+        }]
+    },
+    options: {
+        indexAxis: 'y',
+            scales: {
+                        x: {
+                        beginAtZero: true,
+            max: 5
+        }
+    }
+}
+});
+
+new Chart("timeChart", {
+    type: "bar",
+    data: {
+        labels: [
+            "Atomic Habits",
+            "Deep Work",
+            "Ikigai",
+            "Psychology of Money",
+            "Rich Dad Poor Dad"
+        ],
+        datasets: [{
+            label: "Hours",
+            backgroundColor: "purple",
+            data: [6, 8, 5, 7, 6]
+        }]
+    },
+    options: {
+        indexAxis: 'y'
     }
 });
 
